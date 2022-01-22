@@ -10,12 +10,34 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
+import subprocess, os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
 import sphinx_rtd_theme
 
+# -- Setup in & out dirs with Breathe if in RTD's build process -----------
+def configureDoxyfile(input_dir, output_dir):
+	with open('Doxyfile.in', 'r') as file:
+		filedata = file.read()
+
+	filedata = filedata.replace('@DOXYGEN_INPUT_DIR@', input_dir)
+	filedata = filedata.replace('@DOXYGEN_OUTPUT_DIR@', output_dir)
+
+	with open('Doxyfile', 'w') as file:
+		file.write(filedata)
+
+read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
+
+breathe_projects = {}
+
+if read_the_docs_build:
+	input_dir = '../CatCutifier'
+	output_dir = 'build'
+
+	configureDoxyfile(input_dir, output_dir)
+	subprocess.call('doxygen', shell = True)
+	breathe_projects['CatCutifier'] = output_dir + '/xml'
 
 # -- Project information -----------------------------------------------------
 
