@@ -13,8 +13,10 @@ class Cat
 {
     std::string name{ "" };
 
-    void increase_cuteness();
-
 public:
+    void increase_cuteness(int addedCuteness);
+
     int pet();
+
+    void set_name(const std::string& name);
 };

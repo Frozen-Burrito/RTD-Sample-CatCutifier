@@ -8,9 +8,11 @@ Welcome to CuteCat Library's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Contents
 
-
+   get_started
+   api_ref
+   how_to
 
 Indices and tables
 ==================
@@ -19,9 +21,7 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-Docs
-====
+This library provides a vast and rich set of features used to create and represent cats
+in software.
 
-.. doxygenclass:: Cat
-   :members:
-   :private-members:
+For an in-depth reference of the available functionality, please refer to the :doc:`API Reference <api_ref>` page.
